@@ -71,6 +71,10 @@ configurar o ambiente de desenvolvimento no insominia
     criar novo workspace
     configurar variavel:
         manage enviroments / new enviroments/ renomeia , cria a variavel
+            {
+                "base_url": "http://localhost:3333"
+            }
+
 
 
 instalar o uuid

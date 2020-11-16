@@ -1,6 +1,8 @@
 import { startOfHour } from 'date-fns';
 // o startOfHours coloca o minuto , segundo e milisegundo como 0, ou seja no começo da hora
 
+import { getCustomRepository } from 'typeorm';
+
 // importando o model
 import Appointment from '../models/Appointment';
 // importando o repositorio
@@ -13,23 +15,13 @@ interface Request {
 }
 
 class CreateAppointmentService {
-    // criando uma variavel privada que só pode ser acessada dentro da classe
-    // definindo o retorno da variavel como sendo do tipo AppointmentRepository
-    private appointmentsRepository: AppointmentsRepository;
-
-    // Criando um contructor/
-    // Recebe um parâmetro do tipo Appointmenterepository
-    // reecebendo o valor do repositorio appointmens do arquivo AppointmentsRepository.ts
-    //  como parâmaetro
-    // isso é chamado de Dependency Inversion
-    constructor(appointmentsRepository: AppointmentsRepository) {
-        // Atribuindo um valor a appointmenteRepoitory
-        this.appointmentsRepository = appointmentsRepository;
-    }
-
     // Criando o metodo execute, que recebe dois parâmetros definidos pela tipagem request
     // o execute retorna um Appointment
-    public execute({ date, provider }: Request): Appointment {
+    public async execute({ date, provider }: Request): Promise<Appointment> {
+        const appointmentsRepository = getCustomRepository(
+            AppointmentsRepository,
+        );
+
         // Recebendo o valor de date e executando  a função startHours
         // e aramazenando em appointmentDate
         // o startOfHours coloca o minuto , segundo e milisegundo como 0, ou seja no começo da hora
@@ -37,7 +29,7 @@ class CreateAppointmentService {
 
         // Armazenando na variavel o valor obtido através do metod findByDate
         // o metodo verifica se ja existe um valor armazenado no memso horário
-        const findAppointmentInSameDate = this.appointmentsRepository.findByDate(
+        const findAppointmentInSameDate = await appointmentsRepository.findByDate(
             // passando o valor de appointmentDate como parâmetro pro metodo findByDate
             appointmentDate,
         );
@@ -50,10 +42,14 @@ class CreateAppointmentService {
         }
 
         // armazena em appointment o valor criado através do meotod create
-        const appointment = this.appointmentsRepository.create({
+        const appointment = appointmentsRepository.create({
             provider,
             date: appointmentDate,
         });
+
+        // salvando no banco de dados
+        // tem que ser uma função assincrona pq é algo que pdoe demorar
+        await appointmentsRepository.save(appointment);
 
         return appointment;
     }

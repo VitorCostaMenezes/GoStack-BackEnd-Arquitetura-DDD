@@ -1,21 +1,22 @@
-import { v4 as uuid } from 'uuid'; // necessário instalar a biblioteca
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+// quando vc colcoca em cima da classe siginifca que vc esta passando a classe
+// como parâmetro para o @Entity
+// nesse caso ai a classe a partir de agora vai salvar diretamente na tabela
+// appointments
+@Entity('appointments')
 class Appointment {
+    // definindo o tipo no BD
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    // definindo como coluna
+    @Column()
     provider: string;
 
+    // definindo como coluna
+    @Column('timestamp with time zone')
     date: Date;
-
-    // paraâmetros recebidos na instancia da classe
-    // constructor(provider: string, date: Date) {
-
-    // recebe os prâmetros do Appontment com exceção do id
-    constructor({ provider, date }: Omit<Appointment, 'id'>) {
-        this.id = uuid();
-        this.provider = provider;
-        this.date = date;
-    }
 }
 
 export default Appointment;

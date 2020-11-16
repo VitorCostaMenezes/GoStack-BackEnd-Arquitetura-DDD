@@ -1,0 +1,114 @@
+criar arquivo:
+    ormconfig.json
+    ex:
+        {
+            "type": "postgres",
+                "host": "localhost",
+            "port": 5432,
+            "username": "postgres",
+            "password": "docker",
+            "database": "gostack_gobarber"
+        }
+
+
+
+instalar o typeorm e o driver do postgres:
+    yarn add typeorm pg
+
+
+criar pasta database dentro do src
+
+
+após configurar a conexão,
+    ir no Dbeaver e criar um novo banco d edados e colocar o mesmo
+    nome utilizado na databe do arquivo ormconfig
+
+
+startar a aplicação para testar
+
+
+atualiza o arquivo ormconfig.json
+    {
+    "type": "postgres",
+      "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "docker",
+    "database": "gostack_gobarber",
+    "migrations": [
+		"./src/database/migrations/*.ts"
+	],
+	"cli": {
+		"migrationsDir": "./src/database/migrations"
+	}
+  }
+
+adiiconar o script abaixo no arquivo packeg.json
+    "scripts": {
+        "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    },
+
+
+rodar:
+     yarn typeorm
+
+criando uma migrations
+    yarn typeorm migrations -n Nome_do_Arquivo
+    EX:
+        yarn typeorm migration:create -n CreateApointments
+
+
+para rodar a migration:
+    yarn typeorm migration:run
+
+você só pode alterar uma migration se ela não foi enviada pro sistema
+de controle de versão:
+
+para reverter:
+    yarn typeorm migration:revert
+
+para visualziar as migrations executadas;
+    yarn typeorm migration:show
+
+
+
+alterar no arquivo tsconfig.json
+    descomentar as duas opçoes abaixo
+       "experimentalDecorators": true
+       "emitDecoratorMetadata": true,
+habilita uma função do typescrtp chamada decorators
+
+
+descomnetar a opção abaixo e colocar como false:
+    "strictPropertyInitialization": false,
+
+
+instalar uma dpeendencia do type orm
+yarn add reflect-metadata
+    depois é necvessário importar essa aplicação no primeio arquivo da palicação
+    neste caso o server.ts
+            import 'reflect-metadata';
+
+
+
+atualizra o arquivo orconfig.json
+adicionando as entities
+    {
+        "type": "postgres",
+        "host": "localhost",
+        "port": 5432,
+        "username": "postgres",
+        "password": "docker",
+        "database": "gostack_gobarber",
+        "entities": [
+            "./src/models/*.ts"
+        ],
+            "migrations": [
+                "./src/database/migrations/*.ts"
+            ],
+            "cli": {
+                "migrationsDir": "./src/database/migrations"
+            }
+    }
+
+

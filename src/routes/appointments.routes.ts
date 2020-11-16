@@ -1,5 +1,7 @@
 // Importando o express
 import { Router } from 'express';
+
+import { getCustomRepository } from 'typeorm';
 // parseIso converte uma string para um formato date
 import { parseISO } from 'date-fns';
 // Importando o repositório
@@ -11,21 +13,18 @@ import CreateAppointmentService from '../services/CreateAppointmentService';
 
 const appointmentsRouter = Router(); // definindo a variavel como uma rota
 
-// instanciando a classe em appointmentsRepository
-// a partir de agora é póssivel acessar os metodos existentes na classe
-// AppointmentsRepository
-const appointmentsRepository = new AppointmentsRepository();
+appointmentsRouter.get('/', async (request, response) => {
+    const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-appointmentsRouter.get('/', (request, response) => {
     // acessando o metodo all da Classe AppointmentsRepository
     // e armazenando em appointments
-    const appointments = appointmentsRepository.all();
+    const appointments = await appointmentsRepository.find();
 
     return response.json(appointments);
 });
 
 // Como o /appointments ja esta definido no arquivo index.ts basta usar o / aqui
-appointmentsRouter.post('/', (request, response) => {
+appointmentsRouter.post('/', async (request, response) => {
     // Tratamento de erro
     try {
         const { provider, date } = request.body;
@@ -37,13 +36,10 @@ appointmentsRouter.post('/', (request, response) => {
 
         // Instanciando a classe CreateAppointmentService
         // E armazenando o valor em createAppointment
-        // Passando o valor do repository via parâmetro
-        const createAppointment = new CreateAppointmentService(
-            appointmentsRepository,
-        );
+        const createAppointment = new CreateAppointmentService();
 
         // chamando o metodo execute e passando o valor de date e provider como parâmetro
-        const appointment = createAppointment.execute({
+        const appointment = await createAppointment.execute({
             date: parsedDate,
             provider,
         });
