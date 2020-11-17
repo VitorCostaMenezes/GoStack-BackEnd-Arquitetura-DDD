@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { startOfHour } from 'date-fns';
 // o startOfHours coloca o minuto , segundo e milisegundo como 0, ou seja no começo da hora
 
@@ -11,13 +12,13 @@ import AppointmentsRepository from '../repositories/AppointmentsRepository';
 // criando uma interface
 interface Request {
     date: Date;
-    provider: string;
+    provider_id: string;
 }
 
 class CreateAppointmentService {
     // Criando o metodo execute, que recebe dois parâmetros definidos pela tipagem request
     // o execute retorna um Appointment
-    public async execute({ date, provider }: Request): Promise<Appointment> {
+    public async execute({ date, provider_id }: Request): Promise<Appointment> {
         const appointmentsRepository = getCustomRepository(
             AppointmentsRepository,
         );
@@ -43,7 +44,7 @@ class CreateAppointmentService {
 
         // armazena em appointment o valor criado através do meotod create
         const appointment = appointmentsRepository.create({
-            provider,
+            provider_id,
             date: appointmentDate,
         });
 

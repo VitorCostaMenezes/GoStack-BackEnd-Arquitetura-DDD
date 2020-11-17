@@ -94,3 +94,22 @@ as vezes é necessário utiliza o reload window para desfazer alguns bugs
     reload window
 
 
+editar o arquivo rules
+
+     "rules": {
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "ts": "never"
+            }
+          ],
+          "prettier/prettier": "error",
+          "class-methods-use-this": "off",
+          "@typescript-eslint/camelcase": "off"
+
+
+instalação do modulo de senha:
+    yarn add bcryptjs
+baixar a tipagem:
+    yarn add -D @types/bcryptjs

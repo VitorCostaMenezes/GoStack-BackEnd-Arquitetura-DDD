@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Importando o express
 import { Router } from 'express';
 
@@ -27,7 +28,7 @@ appointmentsRouter.get('/', async (request, response) => {
 appointmentsRouter.post('/', async (request, response) => {
     // Tratamento de erro
     try {
-        const { provider, date } = request.body;
+        const { provider_id, date } = request.body;
 
         // Recebe do date do body uma string tranforma em formato date
         // depois zera os minutos, segundos, milsgundos
@@ -41,7 +42,7 @@ appointmentsRouter.post('/', async (request, response) => {
         // chamando o metodo execute e passando o valor de date e provider como parâmetro
         const appointment = await createAppointment.execute({
             date: parsedDate,
-            provider,
+            provider_id,
         });
 
         // retornando uma resposta

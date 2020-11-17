@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import appointmentsRouter from './appointments.routes';
+import usersRouter from './users.routes';
 
 const routes = Router();
 
@@ -9,5 +10,6 @@ const routes = Router();
 // quando qualquer rota da aplicação chamar o http://localhost:3333/appointments
 // ele ja vai se conectar
 routes.use('/appointments', appointmentsRouter);
+routes.use('/users', usersRouter);
 
 export default routes;
