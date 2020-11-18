@@ -4,6 +4,8 @@ import { startOfHour } from 'date-fns';
 
 import { getCustomRepository } from 'typeorm';
 
+import AppError from '../errors/AppError';
+
 // importando o model
 import Appointment from '../models/Appointment';
 // importando o repositorio
@@ -39,7 +41,7 @@ class CreateAppointmentService {
         // verifica se o metodo findBydate retornou true
         // se for true exibe um erro
         if (findAppointmentInSameDate) {
-            throw Error('This appointment is already booked');
+            throw new AppError('This appointment is already booked.');
         }
 
         // armazena em appointment o valor criado através do meotod create

@@ -113,3 +113,13 @@ instalação do modulo de senha:
     yarn add bcryptjs
 baixar a tipagem:
     yarn add -D @types/bcryptjs
+
+
+
+para utilizar o token da validação jwt
+    yarn add jsonwebtoken
+    yarn add @types/jsonwebtoken
+
+
+configurara opção Bearer no insominia colando o token
+

@@ -10,9 +10,13 @@ import AppointmentsRepository from '../repositories/AppointmentsRepository';
 // importando o service
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 // DTO - Data Transfer Object = tranferencia de dados de um arquivo para o outro
 
 const appointmentsRouter = Router(); // definindo a variavel como uma rota
+
+appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get('/', async (request, response) => {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
