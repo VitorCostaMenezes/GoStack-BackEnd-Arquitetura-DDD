@@ -10,6 +10,8 @@ criar arquivo:
             "database": "gostack_gobarber"
         }
 
+se estiver utilizando o docker em algumas maquina virtual, wsl e etc, tem que colocar
+o ip da maquina virtual e não localhost
 
 
 instalar o typeorm e o driver do postgres:
@@ -20,14 +22,15 @@ criar pasta database dentro do src
 
 
 após configurar a conexão,
-    ir no Dbeaver e criar um novo banco d edados e colocar o mesmo
-    nome utilizado na databe do arquivo ormconfig
+    ir no Dbeaver e criar um novo banco de dados e colocar o mesmo
+    nome utilizado na database do arquivo ormconfig
 
 
 startar a aplicação para testar
 
-
-atualiza o arquivo ormconfig.json
+para utilizar as migrations é necessário criar uma pasta
+migrations dentro da pasta src e atualizar o arquivo ormconfig.json
+    atualiza o arquivo ormconfig.json:
     {
     "type": "postgres",
       "host": "localhost",
@@ -44,6 +47,7 @@ atualiza o arquivo ormconfig.json
   }
 
 adiiconar o script abaixo no arquivo packeg.json
+para typeorm executar a cli do orm usando typescript
     "scripts": {
         "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
     },
@@ -56,6 +60,13 @@ criando uma migrations
     yarn typeorm migrations -n Nome_do_Arquivo
     EX:
         yarn typeorm migration:create -n CreateApointments
+
+
+
+adicionar a regra(rules) abaixo no arquivo .eslitrc.json
+esse script evita que ocorra um erro nas migrationsde ficar solicitando a utilização do this
+          "class-methods-use-this": "off",
+
 
 
 para rodar a migration:
@@ -79,13 +90,14 @@ alterar no arquivo tsconfig.json
 habilita uma função do typescrtp chamada decorators
 
 
-descomnetar a opção abaixo e colocar como false:
+para evitar um erro de falta de incialização das propriedades
+descomentar a opção abaixo e colocar como false:
     "strictPropertyInitialization": false,
 
 
 instalar uma dpeendencia do type orm
 yarn add reflect-metadata
-    depois é necvessário importar essa aplicação no primeio arquivo da palicação
+    depois é necvessário importar essa aplicação no primeio arquivo da aplicação
     neste caso o server.ts
             import 'reflect-metadata';
 

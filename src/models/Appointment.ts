@@ -11,17 +11,19 @@ import {
 
 import User from './User';
 
+// Entitiy no tupeorm éalgo que vai ser salvo no banco de dados
 // quando vc colcoca em cima da classe siginifca que vc esta passando a classe
 // como parâmetro para o @Entity
 // nesse caso ai a classe a partir de agora vai salvar diretamente na tabela
 // appointments
 @Entity('appointments')
 class Appointment {
-    // definindo o tipo no BD
+    // definindo o tipo no BD, essa opção é para utilizar no caso de um id
+    // esta sendo incializado de forma estática pelo metodo uuid incluso no prorpio typeorm
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    // definindo como coluna
+    // definindo como coluna normal
     @Column()
     provider_id: string;
 
@@ -29,7 +31,7 @@ class Appointment {
     @JoinColumn({ name: 'provider_id' })
     provider: User;
 
-    // definindo como coluna
+    // definindo como coluna normal, e recebendo especificações d timestamp
     @Column('timestamp with time zone')
     date: Date;
 

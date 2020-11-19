@@ -41,6 +41,7 @@ appointmentsRouter.post('/', async (request, response) => {
 
         // Instanciando a classe CreateAppointmentService
         // E armazenando o valor em createAppointment
+        // agora tem acaesso ao metodo execute
         const createAppointment = new CreateAppointmentService();
 
         // chamando o metodo execute e passando o valor de date e provider como parâmetro
