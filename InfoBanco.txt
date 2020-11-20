@@ -124,3 +124,23 @@ adicionando as entities
     }
 
 
+
+
+para evitar conflitos relacionados á alguns erros apresnetados pelo eslint
+no caso utilizar _ para mostrar que não vai usra um parâmetro
+instalar a dependencia abaixo, dpeois editar o arquivo eslintrc.json
+    yarn add express-async-errors
+
+    adcionar em rules:
+
+    "@typescript-eslint/no-unused-vars": ["error", {
+              "argsIgnorePattern": "_"
+          }]
+
+
+
+criptografia de senha:
+ instalar a dependencia:
+    yarn add bcryptjs
+    yarn add -D @types/bcryptjs
+

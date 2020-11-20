@@ -24,9 +24,12 @@ class Appointment {
     id: string;
 
     // definindo como coluna normal
+    // referência pro prestador de serviço cadastrado em User
     @Column()
     provider_id: string;
 
+    // provider: User cira uma instancia de User, ManyToOne fala qual tipo de relaiconamento
+    // JoinColum fala qual especifica que o qual avlor a proprieade irá reeber
     @ManyToOne(() => User)
     @JoinColumn({ name: 'provider_id' })
     provider: User;

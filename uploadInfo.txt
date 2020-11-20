@@ -1,3 +1,16 @@
-instalar o multer
+instalar o multer, é indicado para lidar com uploads no express
     yarn add multer
     yarn add -D @types/multer
+
+
+é aconselhavel adicionar o /tmp no arquivo .gitignore
+depois criar um arquivo .gitkeep
+isso vai fazer com que o apenas os arquivo dentro da past tmp sejam igonorados
+     adicionar o script abaixo no gitignore
+        tmp/*
+        !tmp/.gitkeep
+
+
+
+configurar a rota no insominia para a opção Multipartform
+colocar o nome e alterar o cmapo na setinha para file

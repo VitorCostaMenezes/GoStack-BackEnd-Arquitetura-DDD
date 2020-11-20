@@ -1,0 +1,4 @@
+é neecssário instalar o pacote abaixo
+pois o express não consegue captar os erros em rotas assincronas
+quando esta utilizando um global exceptionHandler:
+    yarn add express-async-errors

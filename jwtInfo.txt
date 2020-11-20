@@ -1,0 +1,11 @@
+para utilizar o web token é necessário instalar o pacote abaixo
+    yarn add jsonwebtoken
+instalar tipagem
+    yarn add -D @types/jsonwebtoken
+
+
+no insominia configurar nas rotas que precisam de token
+    clica em Auth e altera para Bearer
+    cola o token ou cria um variavel de ambiente do token
+    e utiliza a variavel
+
