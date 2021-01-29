@@ -2,8 +2,8 @@
 import { startOfHour } from 'date-fns';
 // o startOfHours coloca o minuto , segundo e milisegundo como 0, ou seja no começo da hora
 import { getCustomRepository } from 'typeorm';
-import AppError from '../errors/AppError';
-import Appointment from '../models/Appointment';
+import AppError from 'shared/errors/AppError';
+import Appointment from '../infra/typeorm/entities/Appointment';
 // importando o repositorio
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 

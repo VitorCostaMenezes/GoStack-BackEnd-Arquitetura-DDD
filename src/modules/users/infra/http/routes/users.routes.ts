@@ -2,10 +2,10 @@ import { Router } from 'express';
 // importando a biblioteca multer resposavel por upload
 import multer from 'multer';
 // importando as configurações de upload
-import uploadConfig from '../config/upload';
+import uploadConfig from '@config/upload';
 
-import CreateUserService from '../services/CreateUserService';
-import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
+import CreateUserService from '@modules/users/services/CreateUserService';
+import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 // importando o midleware
 import ensrueAuthenticated from '../middlewares/ensureAuthenticated';
 

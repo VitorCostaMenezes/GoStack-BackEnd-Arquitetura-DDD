@@ -9,7 +9,7 @@ import {
     JoinColumn,
 } from 'typeorm';
 
-import User from './User';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 // Entitiy no tupeorm éalgo que vai ser salvo no banco de dados
 // quando vc colcoca em cima da classe siginifca que vc esta passando a classe

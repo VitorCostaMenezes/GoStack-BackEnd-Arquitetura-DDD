@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 // verifica se o token é válido ou não
 import { verify } from 'jsonwebtoken';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 // importando o arquivo que possui o secret
-import authConfig from '../config/auth';
+import authConfig from '@config/auth';
 
 // criando uma interface como modelo do token
 interface TokenPayload {

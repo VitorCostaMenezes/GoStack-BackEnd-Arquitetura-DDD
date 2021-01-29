@@ -6,11 +6,11 @@ import { getCustomRepository } from 'typeorm';
 // parseIso converte uma string para um formato date
 import { parseISO } from 'date-fns';
 // Importando o repositório
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import AppointmentsRepository from '@modules/appointments/repositories/AppointmentsRepository';
 // importando o service
-import CreateAppointmentService from '../services/CreateAppointmentService';
+import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 // importando o midleware
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 // DTO - Data Transfer Object = tranferencia de dados de um arquivo para o outro
 
