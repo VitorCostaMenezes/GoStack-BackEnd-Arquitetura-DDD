@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 import routes from './routes';
 import uploadConfig from './config/upload';
@@ -11,6 +12,10 @@ import './database';
 
 const app = express();
 
+// o cors permite que o fornt end acesse a api
+// o cors pode recebe ruma url como parâmetro
+// e se conectar apenas a esta url
+app.use(cors());
 app.use(express.json());
 // servindo arquivos de forma estática
 app.use('/files', express.static(uploadConfig.directory));
